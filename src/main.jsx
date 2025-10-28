@@ -7,4 +7,7 @@ const container = document.getElementById("root")
 const root = ReactDOM.createRoot(container)
 root.render(<App />)
 
+// import ReactDOM from 'react-dom'; // Note: different import path
 
+// const container = document.getElementById('root');
+// ReactDOM.render(<App />, container);
