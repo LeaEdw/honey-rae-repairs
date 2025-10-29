@@ -11,13 +11,19 @@ export const TicketList = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    // Call the service function to the the data...
-
-    getAllTickets().then((ticketArray) => {
-      setAllTickets(ticketArray); //1. Set the overall list of tickets
-
-      setFilteredTickets(ticketArray); // Set the list to be displayed initially.
-    });
+    const fetchTickets = async () => {
+      try {
+        // Await the promise returned by getAllTickets
+        const ticketArray = await getAllTickets();
+        // Set both states with the awaited data...
+        setAllTickets(ticketArray);
+        setFilteredTickets(ticketArray);
+      } catch (error) {
+        console.error("Failed to fetch tickets:", error)
+      }
+    }
+        // Call the async function immediately ->
+        fetchTickets();
   }, []);
 
   useEffect(() => {
