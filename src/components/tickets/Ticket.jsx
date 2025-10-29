@@ -6,9 +6,18 @@ export const Ticket = ({ ticket }) => {
   const [assignedEmployee, setAssignedEmployee] = useState({});
 
   useEffect(() => {
-    getAllEmployees().then((employeesArray) => {
-      setEmployees(employeesArray);
-    });
+    const fetchTickets = async () => {
+      try {
+        // Await the promise returned by getAllEmployees
+        const employeesArray = await getAllEmployees();
+
+        // Set the state with the awaited data...
+        setEmployees(employeesArray);
+      } catch (error) {
+        console.error("Failed to fetch tickets...", error)
+      }
+    }
+    fetchTickets()
   }, []);
 
   useEffect(() => {
