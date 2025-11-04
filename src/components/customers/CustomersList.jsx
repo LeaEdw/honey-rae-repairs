@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getNonStaffUsers } from "../../services/userServices"
-import { User } from "../../users/User"
+import { User } from "../users/User"
 import "./Customers.css"
 
 export const CustomerList = () => {
