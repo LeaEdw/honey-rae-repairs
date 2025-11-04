@@ -6,9 +6,9 @@ import { EmployeesList } from "./components/employees/EmployeesList";
 export const App = () => {
   return (
   <>
-    <TicketList />
+    {/* <TicketList /> */}
     {/* <CustomerList/> */}
-    {/* <EmployeesList/> */}
+    <EmployeesList/>
   </>)
 };
 
