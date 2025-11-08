@@ -4,7 +4,7 @@ import { Ticket } from "./Ticket";
 import { FilterBar } from "./TicketFilterBar";
 import "./Tickets.css";
 
-export const TicketList = () => {
+export const TicketList = ({currentUser}) => {
   const [allTickets, setAllTickets] = useState([]);
   const [showEmergency, setShowEmergency] = useState(false);
   const [filteredTickets, setFilteredTickets] = useState([]);
@@ -54,7 +54,7 @@ export const TicketList = () => {
       />
       <article className="tickets">
         {filteredTickets.map((ticketObject) => {
-          return <Ticket key={ticketObject.id} ticket={ticketObject} />;
+          return <Ticket key={ticketObject.id} currentUser={currentUser} ticket={ticketObject} />;
         })}
       </article>
     </div>
