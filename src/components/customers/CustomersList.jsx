@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getNonStaffUsers } from "../../services/userServices";
+import { getNonStaffUsers } from "../../services/userService";
 import { User } from "../users/User";
 import { Link } from "react-router-dom";
 import "./Customers.css";
