@@ -10,7 +10,7 @@ export const TicketList = ({currentUser}) => {
   const [filteredTickets, setFilteredTickets] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
+  const getAndSetTickets = () => {
     const fetchTickets = async () => {
       try {
         // Await the promise returned by getAllTickets
@@ -24,6 +24,10 @@ export const TicketList = ({currentUser}) => {
     }
         // Call the async function immediately ->
         fetchTickets();
+  }
+
+  useEffect(() => {
+    getAndSetTickets()
   }, []);
 
   useEffect(() => {
@@ -54,7 +58,11 @@ export const TicketList = ({currentUser}) => {
       />
       <article className="tickets">
         {filteredTickets.map((ticketObject) => {
-          return <Ticket key={ticketObject.id} currentUser={currentUser} ticket={ticketObject} />;
+          return <Ticket 
+          key={ticketObject.id} 
+          currentUser={currentUser} 
+          getAndSetTickets={getAndSetTickets}
+          ticket={ticketObject} />;
         })}
       </article>
     </div>
