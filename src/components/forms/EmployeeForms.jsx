@@ -41,7 +41,7 @@ export const EmployeeForm = ({ currentUser }) => {
           type="text" 
           required 
           className="form-control" 
-          value={employee.specialty}
+          defaultValue={employee.specialty}
           onChange={(event) => {
             const copy = { ...employee }
             copy.specialty = event.target.value
@@ -55,7 +55,7 @@ export const EmployeeForm = ({ currentUser }) => {
           type="number" 
           required 
           className="form-control" 
-          value={employee.rate}
+          defaultValue={employee.rate}
           onChange={(event) => {
             const copy = {...employee}
             copy.rate = event.target.value
@@ -73,4 +73,4 @@ export const EmployeeForm = ({ currentUser }) => {
 };
 
 // Uncaught TypeError: can't access property "specialty", employee is undefined
-// Fix this issue in the next session.
+// Fix this issue in the next session
