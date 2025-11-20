@@ -4,7 +4,7 @@ import { Ticket } from "./Ticket";
 import { FilterBar } from "./TicketFilterBar";
 import "./Tickets.css";
 
-export const TicketList = ({currentUser}) => {
+export const TicketList = ({ currentUser }) => {
   const [allTickets, setAllTickets] = useState([]);
   const [showEmergency, setShowEmergency] = useState(false);
   const [filteredTickets, setFilteredTickets] = useState([]);
@@ -16,19 +16,26 @@ export const TicketList = ({currentUser}) => {
         // Await the promise returned by getAllTickets
         const ticketArray = await getAllTickets();
         // Set both states with the awaited data...
-        setAllTickets(ticketArray);
-        setFilteredTickets(ticketArray);
+        if (currentUser.isStaff) {
+          setAllTickets(ticketArray);
+        } else {
+          const customerTickets = ticketArray.filter(
+            (ticket) => ticket.userId === currentUser.id
+          );
+
+          setAllTickets(customerTickets);
+        }
       } catch (error) {
-        console.error("Failed to fetch tickets:", error)
+        console.error("Failed to fetch tickets:", error);
       }
-    }
-        // Call the async function immediately ->
-        fetchTickets();
-  }
+    };
+    // Call the async function immediately ->
+    fetchTickets();
+  };
 
   useEffect(() => {
-    getAndSetTickets()
-  }, []);
+    getAndSetTickets();
+  }, [currentUser]);
 
   useEffect(() => {
     if (showEmergency) {
@@ -58,11 +65,14 @@ export const TicketList = ({currentUser}) => {
       />
       <article className="tickets">
         {filteredTickets.map((ticketObject) => {
-          return <Ticket 
-          key={ticketObject.id} 
-          currentUser={currentUser} 
-          getAndSetTickets={getAndSetTickets}
-          ticket={ticketObject} />;
+          return (
+            <Ticket
+              key={ticketObject.id}
+              currentUser={currentUser}
+              getAndSetTickets={getAndSetTickets}
+              ticket={ticketObject}
+            />
+          );
         })}
       </article>
     </div>
