@@ -38,3 +38,15 @@ export const deleteTicket = async (ticketId) => {
 
   return response;
 };
+
+export const createTicket = async (ticket) => {
+    const response = await fetch (`http://localhost:8088/serviceTickets/`,{ 
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(ticket),
+    })
+
+    return response.json
+}

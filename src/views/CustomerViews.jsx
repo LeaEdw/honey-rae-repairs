@@ -2,6 +2,7 @@ import { Outlet, Route, Routes } from "react-router-dom"
 import { Welcome } from "../components/welcome/welcome";
 import { CustomerNavBar } from "../components/navigation/CustomerNavbar";
 import { TicketList } from "../components/tickets/TicketList";
+import { TicketForm } from "../components/forms/TicketForm";
 
 export const CustomerViews = ( {currentUser} ) => {
     return (
@@ -15,7 +16,11 @@ export const CustomerViews = ( {currentUser} ) => {
                     </>
                 }>
                 <Route index element={<Welcome />} />
-                <Route path="tickets" element={<TicketList currentUser={currentUser} />}/>
+                <Route path="tickets" >
+                    <Route index element={<TicketList currentUser={currentUser} />} />
+                    <Route path="create" element={<TicketForm currentUser={currentUser}/>} />
+                </Route>
+                
             </Route>
         </Routes>
     );
