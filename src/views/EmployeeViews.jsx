@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
-import { NavBar } from "../components/navigation/NavBar";
+import { EmployeeNavBar } from "../components/navigation/EmployeeNavbar";
 import { Welcome } from "../components/welcome/welcome";
 import { TicketList } from "../components/tickets/TicketList";
 import { EmployeesList } from "../components/employees/EmployeesList";
 import { CustomerList } from "../components/customers/CustomersList";
 import { CustomerDetails } from "../components/customers/CustomerDetails";
 import { EmployeeForm } from "../components/forms/EmployeeForms";
+import { EmployeeDetails } from "../components/employees/EmployeeDetails";
 
 export const EmployeeViews = ( {currentUser} ) => {
     return (
@@ -16,7 +17,7 @@ export const EmployeeViews = ( {currentUser} ) => {
                 path="/"
                 element={
                     <>
-                        <NavBar />
+                        <EmployeeNavBar />
                         <Outlet />
                     </>
                 }
