@@ -27,7 +27,7 @@ export const EmployeeDetails = () => {
         {employee.user?.email}
       </div>
       <div>
-        <span className="employee-info">Specialty:</span>
+        <span className="employee-info">Specialty: </span>
         {employee.specialty}
       </div>
       <div>
